@@ -59,7 +59,7 @@ class WPSC_Wishlist {
 		add_filter( 'wpsc_load_controller_path', function( $path, $controller ) {
 
 			// Checks to ensure we're on the customer-account controller, and matching the wishlist method.
-			if ( 'customer-account' == $controller && 'wishlist' == _wpsc_get_current_controller_method() ) {
+			if ( 'customer-account' == $controller ) {
 				$path = plugin_dir_path( __FILE__ ) . '/controllers/wishlist.php';
 			}
 
