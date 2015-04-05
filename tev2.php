@@ -58,9 +58,9 @@ class WPSC_Wishlist {
 	private function filter_controller_path() {
 		add_filter( 'wpsc_load_controller_path', function( $path, $controller ) {
 
-			// Checks to ensure we're on the customer-account controller, and matching the wishlist method.
+			// Checks to ensure we're on the customer-account controller.
 			if ( 'customer-account' == $controller ) {
-				$path = plugin_dir_path( __FILE__ ) . '/controllers/wishlist.php';
+				$path = plugin_dir_path( __FILE__ ) . 'controllers/wishlist.php';
 			}
 
 			return $path;
@@ -68,8 +68,9 @@ class WPSC_Wishlist {
 	}
 
 	private function filter_controller_class() {
-		add_filter( 'wpsc_load_controller_class', function( $controller_class ) {
-			return 'WPSC_Controller_Wishlist';
-		} );
+		add_filter( 'wpsc_load_controller_class', function( $class, $controller ) {
+
+			return $controller == 'customer-account' ? 'WPSC_Controller_Wishlist' : $class;
+		}, 10, 2 );
 	}
 }
