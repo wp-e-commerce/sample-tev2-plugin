@@ -56,7 +56,7 @@ class WPSC_Wishlist {
 	}
 
 	private function filter_controller_path() {
-		add_filter( 'wpsc_load_controller_path', function( $path, $controller ) {
+		add_filter( 'wpsc_load_controller_path_wishlist', function( $path, $controller, $class ) {
 
 			// Checks to ensure we're on the customer-account controller.
 			if ( 'customer-account' == $controller ) {
@@ -64,11 +64,11 @@ class WPSC_Wishlist {
 			}
 
 			return $path;
-		}, 10, 2 );
+		}, 10, 3 );
 	}
 
 	private function filter_controller_class() {
-		add_filter( 'wpsc_load_controller_class', function( $class, $controller ) {
+		add_filter( 'wpsc_load_controller_class_wishlist', function( $class, $controller ) {
 
 			return $controller == 'customer-account' ? 'WPSC_Controller_Wishlist' : $class;
 		}, 10, 2 );
